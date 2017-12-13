@@ -67,11 +67,29 @@ This will install all the required packages.
 Start `testrpc` in a separate terminal tab or window.
 
     yarn testrpc
-    
+
     # in separate window or tab
     yarn test
 
-This will compile the contract, deploy to the Ganache instance and run the tests. 
+This will compile the contract, deploy to the Ganache instance and run the tests.
+
+		git clone git@github.com:clearmatics/mobius.git
+
+		sudo apt remove cmdtest # remove cmdtest as it may cause errors when installing/using yarn
+
+		# install yarn
+		curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+		echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+		sudo apt-get update && sudo apt-get install yarn
+
+		# install all required packages with yarn
+		yarn install
+
+		# start up testrpc
+		yarn testrpc
+
+		# in a separate window or tab, run tests
+		yarn test
 
 
 #### Testing with Orbital
