@@ -1,5 +1,7 @@
 # Möbius
 
+[![Build Status](https://travis-ci.org/clearmatics/mobius.svg?branch=master)](https://travis-ci.org/clearmatics/mobius)
+
 Trustless Tumbling for Transaction Privacy
 
 
@@ -12,10 +14,20 @@ Möbius is a Smart Contract that runs on Ethereum that offers trustless autonomo
 
 ## White Paper
 
-[S. Meiklejon, R. Mercer. Möbius: Trustless Tumbling for Transaction Privacy][1]
+[S. Meiklejohn, R. Mercer. Möbius: Trustless Tumbling for Transaction Privacy][1]
 
 
 ## Using Möbius
+
+:point_right: **See the full [Tutorial](./mobiusTutorial.md)**
+
+-----------------------------------------------------
+
+Möbius supports ether and ERC20 compatible token transactions.
+In order to use the Mixer with ERC20 compatible tokens, the `DepositERC20Compatible` and `WithdrawERC20Compatible` functions must be used.
+However, in order to do an ether transaction, one has to use the `DepositEther` and `WithdrawEther` functions.
+
+-----------------------------------------------------
 
 To tumble a token it is deposited into the [Mixer](contracts/Mixer.sol) smart contract by sending the token and the stealth public key of the receiver to the `Deposit` method.
 
@@ -25,10 +37,10 @@ The receiver then generates a linkable ring signature using their stealth privat
 
 The lifecycle and state of the Mixer and Rings is monitored using the following Events:
 
- * `MixerDeposit` - Tokens have been deposited into a Ring, includes: Ring GUID, Receiver Public Key, Token, Value
- * `MixerReady` - Withdrawals can be now me made, includes: Ring GUID, Signing Message
- * `MixerWithdraw` - Tokens have been withdrawn from a Ring, includes: Ring GUID, Tag, Token, Value
- * `MixerDead` - All tokens have been withdrawn from a Ring, includes: Ring GUID
+ * `LogMixerDeposit` - Tokens have been deposited into a Ring, includes: Ring GUID, Receiver Public Key, Token, Value
+ * `LogMixerReady` - Withdrawals can be now me made, includes: Ring GUID, Signing Message
+ * `LogMixerWithdraw` - Tokens have been withdrawn from a Ring, includes: Ring GUID, Tag, Token, Value
+ * `LogMixerDead` - All tokens have been withdrawn from a Ring, includes: Ring GUID
 
 The [Orbital](https://github.com/clearmatics/orbital) tool can be used to create the necessary keys and to create and verify compatible ring signatures, for details see the [Orbital Integration Tests](test/orbital.js).
 
@@ -54,7 +66,7 @@ Currently the Gas usage is:
 
 ## Developing
 
-[Truffle][2] is used to develop and test the Möbius Smart Contract. This has a dependency of [Node.js][3]. [solidity-coverage][7] provides code coverage metrics.
+[Truffle][2] is used to develop and test the Möbius Smart Contract. This has a dependency on [Node.js][3]. [solidity-coverage][7] provides code coverage metrics.
 
 Prerequisites:
 
